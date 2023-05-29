@@ -14,6 +14,7 @@ struct single_list
     element *tail;
     int counter;
 };
+
 void add_tail(single_list &l,int value)
 {
 element* el= new element;
@@ -28,8 +29,8 @@ else
 {
     l.head=el;
     l.tail=el;
-
-}}
+}
+}
 void add_head(single_list &l,int value)
 {element* el= new element;
 el-> number = value;
