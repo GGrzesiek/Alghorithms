@@ -17,82 +17,129 @@ struct single_list
 
 void add_tail(single_list &l,int value)
 {
-element* el= new element;
-el-> number = value;
-el-> next = nullptr;
-if(l.tail!=nullptr)
-{
-    l.tail->next=el;
-    l.tail=el;
-}
-else
-{
-    l.head=el;
-    l.tail=el;
-}
+    element* el= new element;
+    el-> number = value;
+    el-> next = nullptr;
+    if(l.tail!=nullptr)
+    {
+        l.tail->next=el;
+        l.tail=el;
+    }
+    else
+    {
+        l.head=el;
+        l.tail=el;
+    }
+    l.counter++;
 }
 void add_head(single_list &l,int value)
-{element* el= new element;
-el-> number = value;
-el-> next = nullptr;
-l.head=el;
-if(l.tail!=nullptr)
-{
-l.tail=el;
-}
-}
-void add_position(single_list &l,int value,int position)
 {
     element* el= new element;
     el-> number = value;
     el-> next = nullptr;
-    element* temp=l.head;
-    for(int i=1;i<position-1;i++)
+    l.head=el;
+
+    if(l.tail!=nullptr)
     {
-        temp=temp->next;
+        l.tail=el;
     }
-    el->next=temp->next;
-    temp->next=el;
+    l.counter++;
 }
-void delete_tail(single_list &l)
-{   element* temp=l.tail;
-    if(l.counter==1)
+void add_position(single_list &l,int value,int position)
+{   
+    if(position < 1 || position > l.counter + 1)
     {
-        l.tail=nullptr;
-        l.head==nullptr;
+        cout << "Nieprawidlowa pozycja" << endl;
+        return;
     }
     else
     {
-        element* bef_temp=l.head;
-        for(int i=1;i<l.counter;i++)
+        element* el= new element;
+        el-> number = value;
+        el-> next = nullptr;
+        element* temp=l.head;
+        for(int i=1;i<position-1;i++)
         {
-            bef_temp=bef_temp->next;
+            temp=temp->next;
         }
-        l.tail=bef_temp;
-        l.tail->next=nullptr;
+        el->next=temp->next;
+        temp->next=el;
+        l.counter++;
     }
-    delete temp;
+}
+void delete_tail(single_list &l)
+{   
+    if(l.counter == 0)
+    {
+        cout<<"Lista jest pusta"<<endl;
+        return;
+    }
+    else
+    {
+        element* temp=l.tail;
+        if(l.counter==1)
+        {
+            l.tail=nullptr;
+            l.head==nullptr;
+        }
+        else
+        {
+            element* bef_temp=l.head;
+            for(int i=1;i<l.counter;i++)
+            {
+                bef_temp=bef_temp->next;
+            }
+            l.tail=bef_temp;
+            l.tail->next=nullptr;
+            l.counter--;
+        }
+        delete temp;
+    }
 }
 void delete_head(single_list &l)
-{
-    element* temp=l.head;
-    l.head=l.head->next;
-    if(l.counter==1)
+{   
+    if(l.counter == 0)
     {
-        l.tail=nullptr;
+        cout<<"Lista jest pusta"<<endl;
+        return;
     }
-    delete temp;
+    else
+    {
+        element* temp=l.head;
+        l.head=l.head->next;
+        if(l.counter==1)
+        {
+            l.tail=nullptr;
+        }
+        delete temp;
+        l.counter--;
+    }
+    
 }
 void delete_position(single_list &l,int position)
-{
-    element* temp=l.head;
-    for(int i=1;i<position-1;i++)
+{   
+    if(l.counter == 0)
     {
-        temp=temp->next;
+        cout<<"Lista jest pusta"<<endl;
+        return;
     }
-    element* temp2=temp->next;
-    temp->next=temp2->next;
-    delete temp2;
+    else if(position < 1 || position > l.counter)
+    {
+        cout << "Nieprawidlowa pozytcja" << endl;
+        return;
+    }
+    else
+    {
+        element* temp=l.head;
+        for(int i=1;i<position-1;i++)
+        {
+            temp=temp->next;
+        }
+        element* temp2=temp->next;
+        temp->next=temp2->next;
+        delete temp2;
+        l.counter--;
+    }
 }
 void print(single_list l)
 {
@@ -120,7 +167,10 @@ bool isEmpty(single_list l)
 int main()
 {
     single_list l;
-    bool flaga=1; 
+    bool flaga=1;
+    l.head = nullptr;
+    l.tail = nullptr;
+    l.counter = 0; 
     int wybor;
     srand(time(0));
 
@@ -175,25 +225,13 @@ int main()
                 break;
             }
             case 5:
-            {   if(isEmpty)
-                {
-                    cout<<"Lista jest pusta"<<endl;
-                }
-                else
-                {
-                    delete_tail(l);
-                }
+            { 
+                delete_tail(l);
                 break;
             }
             case 6:
-            {   if(isEmpty)
-                {
-                    cout<<"Lista jest pusta"<<endl;
-                }
-                else
-                {
-                    delete_head(l);
-                }
+            {   
+                delete_head(l);
                 break;
             }
             case 7:
@@ -230,7 +268,8 @@ int main()
             {
                 element* temp=l.head;
                 int max=0;
-                for(int i=1;i<l.counter;i++)
+                int i = 1;
+                for(i;i<l.counter;i++)
                 {
                     if(temp->number>max)
                     {
@@ -238,7 +277,7 @@ int main()
                     }
                     temp=temp->next;
                 }
-                cout<<max<<endl;
+                cout << "Najwiekszy element: " << max << ", pozycja: " << i << endl;
                 break;
             }
             case 12:
