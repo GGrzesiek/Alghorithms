@@ -1,117 +1,142 @@
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
-struct element {
+struct element 
+{
     int number;
     element* prev;
     element* next;
 };
 
-void dodajPo(element*& l, int value) {
+void AddNext(element*& l, int value)
+{
     element* el = new element;
     el->number = value;
 
-    if (l == nullptr) {
+    if (l == nullptr)
+    {
         el->prev = el;
         el->next = el;
         l = el;
-    } else {
+    }
+    else
+    {
         el->prev = l;
         el->next = l->next;
         l->next->prev = el;
         l->next = el;
-        
     }
 }
 
-void dodajPrzed(element*& l, int value) {
+void AddBefore(element*& l, int value)
+{
     element* el = new element;
     el->number = value;
 
-    if (l == nullptr) {
+    if (l == nullptr) 
+    {
         el->prev = el;
         el->next = el;
         l = el;
-    } else {
+    } 
+    else 
+    {
         el->prev = l->prev;
         el->next = l;
         l->prev->next = el;
         l->prev = el;
-        
     }
 }
 
-void usunPo(element*& l) {
-    if (l != nullptr) {
+void DelNext(element*& l) 
+{
+    if (l != nullptr) 
+    {
         element* temp = l->next;
 
-        if (temp != l) {
+        if (temp != l)
+        {
             l->next = temp->next;
             temp->next->prev = l;
 
             if (temp == l->next)
+            {
                 l->next = l;
+            }
 
             delete temp;
         }
     }
     else
     {
-        cout<< "lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
     }
 }
 
-void usunPrzed(element*& l) {
-    if (l != nullptr) {
+void DelBefore(element*& l)
+{
+    if (l != nullptr)
+    {
         element* temp = l->prev;
 
-        if (temp != l) {
+        if (temp != l)
+        {
             l->prev = temp->prev;
             temp->prev->next = l;
 
             if (temp == l->prev)
+            {
                 l->prev = l;
+            }
 
             delete temp;
         }
     }
     else
     {
-        cout<< "lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
     }
 }
 
-int iloscElementow(element* l) {
+int Amount(element* l)
+{
     if (l == nullptr)
+    {
         return 0;
-
-    int licz = 0;
+    }
+        
+    int coun = 0;
     element* temp = l->next;
 
-    while (temp != l) {
-        licz++;
+    while (temp != l) 
+    {
+        coun++;
         temp = temp->next;
     }
 
-    return licz + 1;
+    return coun + 1;
 }
 
-void show(const element* l) {
-    if (l != nullptr) {
+void show(const element* l)
+{
+    if (l != nullptr)
+    {
         const element* temp = l;
 
-        cout<< "Lista: ";
+          "List: ";
 
-        do {
+        do 
+        {
             cout << temp->number << " ";
             temp = temp->next;
         } while (temp != l);
-        cout<< endl;
+        cout << endl;
     }
     else
     {
-        cout<< "lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
     }
 }
 
@@ -119,49 +144,64 @@ void show(const element* l) {
 
 
 int main()
-{
+{   
+    srand(time(0));
     element *l = nullptr;
-    int wybor;
-    int liczba;
-    while(wybor!=7)
-    {
-        cout<<endl;
-        cout<< "1. Dodaj za"<<endl;
-        cout<<"2. Dodaj przed"<<endl;
-        cout<< "3. Usun za"<<endl;
-        cout<< "4. Usun przed"<<endl;
-        cout<< "5. Ilosc elementow"<<endl;
-        cout<< "6. Wyswietl"<< endl;
-        cout<< "7. Wyjscie"<<endl;
-        cin>>wybor;
-        cout<<endl;
-        switch(wybor)
-        {
-        case 1:
-            cout<< "podaj liczbe: ";
-            cin>>liczba;
-            dodajPo(l,liczba);
-            break;
-        case 2:
-            cout<< "podaj liczbe: ";
-            cin>>liczba;
-            dodajPrzed(l,liczba);
-            break;
-        case 3:
-            usunPo(l);
-            break;
-        case 4:
-            usunPrzed(l);
-            break;
-        case 5:
-            cout<<"ilosc: "<<iloscElementow(l)<<endl;
-            break;
-        case 6:
-            show(l);
-            break;
+    int choice;
+    int number;
+    bool flag = 1;
 
+    while(flag)
+    {
+        cout << "1. Add next element" << endl;
+        cout <<"2. Add before element" << endl;
+        cout << "3. Delete next element" << endl;
+        cout << "4. Delete before element" << endl;
+        cout << "5. Amount of elements" << endl;
+        cout << "6. Display" << endl;
+        cout << "7. Exit" << endl;
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+            {
+                int number=rand()%10;
+                AddNext(l,number);
+                break;
+            }
+            case 2:
+            {
+                int number=rand()%10;
+                AddBefore(l,number);
+                break;
+            }
+            case 3:
+            {
+                DelNext(l);
+                break;
+            }
+            case 4:
+            {
+                DelBefore(l);
+                break;
+            }
+            case 5:
+            {
+                cout << "Amount: " << Amount(l) << endl;
+                break;
+            }
+            case 6:
+            {
+                show(l);
+                break;
+            }
+            case 7:
+            {
+                flag = 0;
+                break;
+            } 
         }
-        cout<<endl;
     }
 
 

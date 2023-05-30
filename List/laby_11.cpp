@@ -48,7 +48,7 @@ void add_position(single_list &l,int value,int position)
 {   
     if(position < 1 || position > l.counter + 1)
     {
-        cout << "Nieprawidlowa pozycja" << endl;
+        cout << "Incorrect index" << endl;
         return;
     }
     else
@@ -69,7 +69,7 @@ void delete_tail(single_list &l)
 {   
     if(l.counter == 0)
     {
-        cout<<"Lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
         return;
     }
     else
@@ -98,7 +98,7 @@ void delete_head(single_list &l)
 {   
     if(l.counter == 0)
     {
-        cout<<"Lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
         return;
     }
     else
@@ -119,12 +119,12 @@ void delete_position(single_list &l,int position)
 {   
     if(l.counter == 0)
     {
-        cout<<"Lista jest pusta"<<endl;
+        cout << "List is empty" << endl;
         return;
     }
     else if(position < 1 || position > l.counter)
     {
-        cout << "Nieprawidlowa pozytcja" << endl;
+        cout << "Incorrect position" << endl;
         return;
     }
     else
@@ -145,10 +145,10 @@ void print(single_list l)
     element* temp=l.head;
     for(int i=0;i<l.counter;i++)
     {
-        cout<<temp->number<<", ";
+        cout << temp->number<<", ";
         temp=temp->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
 bool isEmpty(single_list l)
@@ -163,17 +163,17 @@ bool isEmpty(single_list l)
     }
 }
 
-float sred(single_list l)
+float avg(single_list l) //any idea why it doesn't work?
 {
     element* temp=l.head;
-    float suma=0;
+    float sum=0;
     for(int i=1;i<l.counter;i++)
     {
-        suma+=temp->number;
+        sum+=temp->number;
         temp=temp->next;
-        cout<<suma<<endl;
+        cout << sum << endl;
     }
-    return suma/(l.counter-1);
+    return sum/(l.counter-1);
 }
 
 int max(single_list l)
@@ -181,7 +181,7 @@ int max(single_list l)
     element* temp=l.head;
     int max=temp->number;
     int i=1;
-    int position=1;
+    int position=i;
     for(i;i<l.counter;i++)
     {
         if(temp->number>max)
@@ -191,69 +191,71 @@ int max(single_list l)
         }
         temp=temp->next;
     }
-    cout<<"pozycja elementu: "<<position<<endl;
+    cout << "position elementu: "<< position << endl;
       
     return max;
 }
+
 int main()
 {
     single_list l;
-    bool flaga=1;
+    bool flag=1;
     l.head = nullptr;
     l.tail = nullptr;
     l.counter = 0; 
-    int wybor;
+    int choice;
     srand(time(0));
 
-    while(flaga)
-    {   cout<<"Co chcesz zrobić"<<endl;
-        cout<<" 1. Sprawdzenie czy lista jest pusta"<<endl;
-        cout<<" 2. Dodanie elementu na koniec listy"<<endl;
-        cout<<" 3. Dodanie elementu na początek listy"<<endl;
-        cout<<" 4. Dodanie elementu na okreslona pozycje"<<endl;
-        cout<<" 5. Usuniecie elementu z konca listy"<<endl;
-        cout<<" 6. Usuniecie elementu z poczatku listy"<<endl;
-        cout<<" 7. Usuniecie elementu z wybranej pozycji"<<endl;
-        cout<<" 8. Pobranie pierwszego elementu"<<endl;
-        cout<<" 9. Pobranie ostatniego elementu"<<endl;
-        cout<<" 10. Policzenie sredniej"<<endl;
-        cout<<" 11. Element maksymalny"<<endl;
-        cout<<" 12. Wypisanie listy"<<endl;
-        cout<<" 13. Koniec programu"<<endl;
-        cin>>wybor;
-        switch(wybor)
+    while(flag)
+    {
+        cout << " 1. Check is that list is empty" << endl;
+        cout << " 2. Add element the end of the list" << endl;
+        cout << " 3. Add element at beggining of the list" << endl;
+        cout << " 4. Add element on specified index" << endl;
+        cout << " 5. Remove an element from the end" << endl;
+        cout << " 6. Remove an element from the beggining" << endl;
+        cout << " 7. Remove an element from specified index " << endl;
+        cout << " 8. Display first element" << endl;
+        cout << " 9. Display last element" << endl;
+        cout << " 10. Average" << endl;
+        cout << " 11. Max" << endl;
+        cout << " 12. Display whole list" << endl;
+        cout << " 13. Exit" << endl;
+
+        cin >> choice;
+        switch(choice)
         {
             case 1:
             {   
                 if(isEmpty(l))
                 {
-                    cout<<"Lista jest pusta"<<endl;
+                    cout << "List is empty" << endl;
                 }
                 else
                 {
-                    cout<<"Lista nie jest pusta"<<endl;
+                    cout << "List is not empty" << endl;
                 }
                 break;
             }
             case 2:
             {   
-                int liczba=rand()%10;
-                add_tail(l,liczba);
+                int num=rand()%10;
+                add_tail(l,num);
                 break;
             }
             case 3:
             {
-                int liczba=rand()%10;
-                add_head(l,liczba);
+                int num=rand()%10;
+                add_head(l,num);
                 break;
             }
             case 4:
             {
-                int liczba=rand()%10;
-                int pozycja;
-                cout<<"Podaj pozycje"<<endl;
-                cin>>pozycja;
-                add_position(l,liczba,pozycja);
+                int num=rand()%10;
+                int position;
+                cout << "Enter index" << endl;
+                cin >> position;
+                add_position(l,num,position);
                 break;
             }
             case 5:
@@ -268,66 +270,70 @@ int main()
             }
             case 7:
             {
-                int pozycja;
-                cout<<"Podaj pozycje"<<endl;
-                cin>>pozycja;
-                delete_position(l,pozycja);
+                int position;
+                cout << "Enter index" << endl;
+                cin >> position;
+                delete_position(l,position);
                 break;
             }
             case 8:
-            {   if(isEmpty(l))
+            {   
+                if(isEmpty(l))
                 {
-                    cout << "Lista jest pusta" << endl;
+                    cout << "List is empty" << endl;
                 }
                 else
                 {
-                    cout<<l.head->number<<endl;
+                    cout << l.head->number << endl;
                 }
                 break;
             }
             case 9:
-            {   if(isEmpty(l))
+            {   
+                if(isEmpty(l))
                 {
-                    cout << "Lista jest pusta" << endl;
+                    cout << "List is empty" << endl;
                 }
                 else
                 {
-                    cout<<l.tail->number<<endl;
+                    cout << l.tail->number << endl;
                 }
                 break;
             }
             case 10:
-            {   if(isEmpty(l))
+            {   
+                if(isEmpty(l))
                 {
-                    cout << "Lista jest pusta" << endl;   
+                    cout << "List is empty" << endl;   
                 }
                 else
                 {
-                    cout<< "Srednia: " << sred(l) <<endl;
+                    cout <<  "Average: " << avg(l)  << endl;
                 }
                 break;
             }
             case 11:
-            {   if(isEmpty(l))
+            {   
+                if(isEmpty(l))
                 {
-                    cout << "Lista jest pusta" << endl;
+                    cout << "List is empty" << endl;
 
                 }
                 else
                 {
-                    cout << ", wartosc najwiekszego elementu: " << max(l) << endl;
+                    cout << ", max= " << max(l) << endl;
                 }
                 break;
             }
             case 12:
             {   
                 print(l);
-                cout << "Rozmar listy: " << l.counter << endl;
+                cout << "Size of list: " << l.counter << endl;
                 break;
             }
             case 13:
             {
-                flaga=0;
+                flag=0;
                 break;
             }
         }
