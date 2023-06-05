@@ -1,0 +1,13 @@
+Napisać schemat algorytmu, w którym użytkownik podaje całkowitą liczbę dodatnią a.
+Następnie:
+a) jeśli wszystkie cyfry liczby a są jednakowe, wyświetlany jest komunikat „cyfry
+jednakowe”, w przeciwnym przypadku wyświetlany jest komunikat „cyfry różne”,
+b) obliczana i wyświetlana jest suma cyfr liczby a,
+c) wyznaczana i wyświetlana jest największa z cyfr liczby a,
+d) sprawdzane jest, czy więcej jest cyfr parzystych czy nieparzystych we wczytanej
+liczbie i wyświetlany jest odpowiedni komunikat,
+e) utworzona i wyświetlana jest liczba lustro będąca odbiciem lustrzanym liczby a
+(cyfry w odwrotnej kolejności względem cyfr liczby a),
+f) sprawdzane jest, czy wczytana z klawiatury liczba jest palindromem, tzn. czytana od
+końca jest taka sama jak czytana od początku, np. 234432,
+g) wyznaczane i wyświetlane jest rozwinięcie binarne liczby a
