@@ -1,0 +1,5 @@
+Napisać schemat algorytmu, w którym użytkownik podaje liczbę n>0 oraz n liczb 
+całkowitych do tablicy t. Następnie zmiennej wynik przypisywany jest iloczyn wszystkich 
+niezerowych elementów tablicy t, których indeks i jest podzielny przez 3. Jeżeli w tablicy 
+brak takich elementów wynik powinien być równy 0. Wyświetlić wartość zmiennej wynik. 
+Przyjąć, że indeks 0 jest podzielny przez 3.
