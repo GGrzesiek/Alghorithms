@@ -50,9 +50,9 @@ void AddBefore(element*& l, int value)
     }
 }
 
-void DelNext(element*& l) 
+void DelNext(element*& l, int value) 
 {
-    if (l != nullptr) 
+    if (value!=0) 
     {
         element* temp = l->next;
 
@@ -65,7 +65,10 @@ void DelNext(element*& l)
             {
                 l->next = l;
             }
-
+            if (value == 1)
+            {
+                delete l; 
+            }
             delete temp;
         }
     }
@@ -75,9 +78,9 @@ void DelNext(element*& l)
     }
 }
 
-void DelBefore(element*& l)
+void DelBefore(element*& l, int value)
 {
-    if (l != nullptr)
+    if (value!=0)
     {
         element* temp = l->prev;
 
@@ -90,7 +93,10 @@ void DelBefore(element*& l)
             {
                 l->prev = l;
             }
-
+            if (value == 1)
+            {
+                l = nullptr; 
+            }
             delete temp;
         }
     }
@@ -178,12 +184,12 @@ int main()
             }
             case 3:
             {
-                DelNext(l);
+                DelNext(l,Amount(l));
                 break;
             }
             case 4:
             {
-                DelBefore(l);
+                DelBefore(l,Amount(l));
                 break;
             }
             case 5:
