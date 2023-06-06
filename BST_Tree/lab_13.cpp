@@ -29,9 +29,9 @@ void add_node(int value, node* &root)
     node* temp = root;
     while(true)
     {
-        if (value >= root->key)
+        if (value >= temp->key)
         {
-            if (root->right == nullptr)
+            if (temp->right == nullptr)
             {
                 temp->right = make_node(value);
                 temp->right->parent = temp;
@@ -44,10 +44,10 @@ void add_node(int value, node* &root)
         }
         else
         {
-            if (root->left == nullptr)
+            if (temp->left == nullptr)
             {
-                root->left = make_node(value);
-                root->left->parent = temp;
+                temp->left = make_node(value);
+                temp->left->parent = temp;
                 return;
             }
             else
@@ -61,7 +61,7 @@ void preorder(node* root)
 {
     if(root!=nullptr)
     {
-        cout << root->key;
+        cout << root->key << " ";
         preorder(root->left);
         preorder(root->right);
     }
@@ -73,7 +73,7 @@ void postorder(node* root)
     {   
         postorder(root->left);
         postorder(root->right);
-        cout << root->key;
+        cout << root->key << " ";
     }
 }
 
@@ -82,7 +82,7 @@ void inorder(node* root)
     if(root!=nullptr)
     {
         inorder(root->left);
-        cout << root->key;
+        cout << root->key << " ";
         inorder(root->right);
     }
 }
@@ -138,7 +138,7 @@ void delete_node(node* &root,node* delete_node)
     }
     else
     {
-        temp2 = find_successor(delete_node);
+        temp1 = find_successor(delete_node);
     }
 
     if(temp1->left!=nullptr)
@@ -173,6 +173,14 @@ void delete_node(node* &root,node* delete_node)
         delete_node->key=temp1->key;
     }
     delete temp1;
+}
+
+int countNodes(node* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+
+    return 1 + countNodes(root->left) + countNodes(root->right);
 }
 
 int main()
@@ -213,7 +221,15 @@ int main()
             {
                 cout << "Podaj wartosc wezla" << endl;
                 cin >> value;
-                add_node(value,tree);
+                if(find_node(tree,value)!=nullptr)
+                {
+                    cout << "W drzewie jest juz wezel o podanej wartosci" << endl;
+                }
+                else
+                {
+                    add_node(value,tree);
+                }
+                
                 break;
             }
             case 3:
@@ -232,7 +248,56 @@ int main()
             }
             case 4:
             {
-                
+                int count = countNodes(tree);
+                cout << "Liczba wezlow w drzewie wynosi: " << count << endl;
+                break;
+            }
+            case 5:
+            {
+                preorder(tree);
+                cout << endl;
+                break;
+            }
+            case 6:
+            {
+                inorder(tree);
+                cout << endl;
+                break;
+            }
+            case 7:
+            {
+                postorder(tree);
+                cout << endl;
+                break;
+            }
+            case 8:
+            {
+                cout << "Podaj wartosc wezla" << endl;
+                cin >> value;
+                node* temp = find_node(tree,value);
+                if(temp!=nullptr)
+                {   inorder(tree);
+                    cout << endl;
+                    delete_node(tree,temp);
+                    inorder(tree);
+                    cout << endl;
+                }
+                else
+                {
+                    cout << "W drzewie nie znajduje sie wezel o podanej wartosci" << endl;
+                }
+                break;
+            }
+            case 9:
+            {
+                delete tree;
+                tree=nullptr;
+                break;
+            }
+            case 10:
+            {
+                flag=false;
+                break;
             }
         }
     }
