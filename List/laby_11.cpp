@@ -163,7 +163,7 @@ bool isEmpty(single_list l)
     }
 }
 
-float avg(single_list l) //any idea why it doesn't work?
+float avg(single_list l)
 {
     element* temp=l.head;
     float sum=0;
@@ -171,7 +171,6 @@ float avg(single_list l) //any idea why it doesn't work?
     {
         sum+=temp->number;
         temp=temp->next;
-        cout << sum << endl;
     }
     return sum/(l.counter-1);
 }
@@ -191,7 +190,7 @@ int max(single_list l)
         }
         temp=temp->next;
     }
-    cout << "position elementu: "<< position << endl;
+    cout << "position : "<< position << endl;
       
     return max;
 }
@@ -321,7 +320,7 @@ int main()
                 }
                 else
                 {
-                    cout << ", max= " << max(l) << endl;
+                    cout << max(l) << ", max= " << endl;
                 }
                 break;
             }
