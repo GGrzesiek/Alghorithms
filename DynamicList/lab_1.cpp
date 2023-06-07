@@ -13,7 +13,7 @@ void wypelnijTablice1D(int *tab, int n,int a,int b)
 {   srand(time(NULL));
     for(int i=0;i<n;i++)
     {
-         tab[i]=rand()%(b-a+1)+a;
+         tab[i]=rand()%(b-a+1);
     }
 }
 
@@ -59,6 +59,18 @@ bool czyPierwsza(int liczba)
     return true;
 }
 
+void ileWyst(int *tab,int n)
+{
+    int lWyst[10]={0};
+    for(int i=0;i<n;i++)
+    {   
+        lWyst[tab[i]]++;
+    }
+    for(int i=0;i<10;i++)
+    {
+        cout << i << " wystepuje " << lWyst[i] << " razy" << endl;
+    }
+}
 int main()
 {   int rozmiar;
     int *t;
@@ -73,16 +85,16 @@ int main()
 
         przydzielPamiec1D(t,rozmiar);
 
-        cout<<"Wybierz zadanie:"<<endl<<"1) 1.2"<<endl<<"2) 1.3"<<endl<<"3) 1.4"<<endl<<"4) 1.5"<<endl<<"5) wyjscie";
+        cout<<"Wybierz zadanie:"<<endl<<"1) 1.2"<<endl<<"2) 1.3"<<endl<<"3) wyjscie";
         cin>> wybor;
         switch(wybor)
         {
             case 1:
                 {   
                     int przedziala,przedzialb;
-                    cout<<"Podaj dolna granice przedzialu: "<<endl;
+                    cout << "Podaj dolna granice przedzialu: " << endl;
                         cin>>przedziala;
-                    cout<<"Podaj gorna granice przedzialu: "<<endl;
+                    cout << "Podaj gorna granice przedzialu: " << endl;
                         cin>>przedzialb;
                             if(przedziala<=przedzialb)
                             {
@@ -107,20 +119,16 @@ int main()
                             {
                                 cout<<"b<a!"<<endl;
                             }
+                    break;
                 }
             case 2:
                 {
-                    wypelnijTablice1D(t,rozmiar,przedziala,przedzialb);
+                    wypelnijTablice1D(t,rozmiar,0,10);
+                    wyswietl1D(t,rozmiar);
+                    ileWyst(t,rozmiar);
+                    break;
                 }
             case 3:
-                {
-
-                }
-            case 4:
-                {
-
-                }
-            case 5:
                 {
                     flag=false;
                     break;

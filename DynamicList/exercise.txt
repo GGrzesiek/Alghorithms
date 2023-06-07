@@ -9,16 +9,3 @@ Pobierz od użytkownika rozmiar tablicy jednowymiarowej. Przyjmij, że przedzia�
 z którego będą losowane liczby w celu wypełnienia tablicy to <0,9>. Wypełnij tablicę
 liczbami. Należy zliczyć występowanie każdej z cyfr w tablicy i wyświetlić użytkownikowi
 informację, ile razy dana cyfra pojawiła się w tablicy, np. Cyfra 1 – 10 razy, itd.
-
-Zadanie 1.4. Maksymalny element
-Pobierz od użytkownika rozmiary tablicy dwuwymiarowej oraz przedział <a,b>, z którego
-wylosowana zostanie zawartość tablicy. Wypełnij tablicę liczbami. Znajdź element
-maksymalny w tablicy i policz sumę cyfr znalezionej liczby. Na konsoli powinien zostać
-wyświetlony największy element oraz suma cyfr znalezionej liczby.
-
-Zadanie 1.5. Średnia
-Pobierz od użytkownika rozmiar kwadratowej tablicy dwuwymiarowej. Przyjmij,
-że przedział, z którego będą losowane liczby w celu wypełnienia tablicy to <7,122>. Wypełnij
-tablicę liczbami. Policz średnią arytmetyczną elementów znajdujących się nad główną
-przekątną oraz średnią arytmetyczną elementów znajdujących się pod główną przekątną.
-Wyświetl policzone średnie na konsoli.
