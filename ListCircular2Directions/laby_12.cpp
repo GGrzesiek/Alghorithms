@@ -183,13 +183,27 @@ int main()
                 break;
             }
             case 3:
-            {
-                DelNext(l,Amount(l));
+            {   
+                if(Amount(l)==1)
+                {
+                    l=nullptr;
+                }
+                else if(Amount(l)>1)
+                {
+                    DelNext(l,Amount(l));
+                }  
                 break;
             }
             case 4:
             {
-                DelBefore(l,Amount(l));
+                if(Amount(l)==1)
+                {
+                    l=nullptr;
+                }
+                else if(Amount(l)>1)
+                {
+                    DelBefore(l,Amount(l));
+                }  
                 break;
             }
             case 5:
@@ -198,7 +212,7 @@ int main()
                 break;
             }
             case 6:
-            {
+            {   
                 show(l);
                 break;
             }
@@ -209,7 +223,5 @@ int main()
             } 
         }
     }
-
-
     return 0;
 }
