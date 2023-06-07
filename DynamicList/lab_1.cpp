@@ -13,7 +13,7 @@ void wypelnijTablice1D(int *tab, int n,int a,int b)
 {   srand(time(NULL));
     for(int i=0;i<n;i++)
     {
-         tab[i]=rand()%(b-a+1);
+         tab[i]=rand()%(b-a);
     }
 }
 
@@ -21,7 +21,7 @@ void wyswietl1D(int *tab,int n)
 {
     for(int i=0;i<n;i++)
     {
-         cout<<tab[i]<<endl;
+         cout << tab[i] << endl;
     }
 }
 
@@ -71,6 +71,7 @@ void ileWyst(int *tab,int n)
         cout << i << " wystepuje " << lWyst[i] << " razy" << endl;
     }
 }
+
 int main()
 {   int rozmiar;
     int *t;
@@ -80,22 +81,23 @@ int main()
     
     while(flag)
     {
-        cout<<"Podaj rozmiar tablicy: "<<endl;
-        cin >> rozmiar;
+        
 
-        przydzielPamiec1D(t,rozmiar);
-
-        cout<<"Wybierz zadanie:"<<endl<<"1) 1.2"<<endl<<"2) 1.3"<<endl<<"3) wyjscie";
-        cin>> wybor;
+        cout << "Wybierz zadanie:" << endl << "1) 1.2" << endl << "2) 1.3" << endl << "3) wyjscie" << endl;
+        cin >> wybor;
         switch(wybor)
         {
             case 1:
                 {   
+                    cout << "Podaj rozmiar tablicy: " << endl;
+                    cin >> rozmiar;
+                    przydzielPamiec1D(t,rozmiar);
+
                     int przedziala,przedzialb;
                     cout << "Podaj dolna granice przedzialu: " << endl;
-                        cin>>przedziala;
+                        cin >> przedziala;
                     cout << "Podaj gorna granice przedzialu: " << endl;
-                        cin>>przedzialb;
+                        cin >> przedzialb;
                             if(przedziala<=przedzialb)
                             {
                                 wypelnijTablice1D(t,rozmiar,przedziala,przedzialb);
@@ -117,15 +119,21 @@ int main()
                             }
                             else
                             {
-                                cout<<"b<a!"<<endl;
+                                cout << "b<a!" << endl;
                             }
+                    usunTablice1D(t);
                     break;
                 }
             case 2:
                 {
+                    cout << "Podaj rozmiar tablicy: " << endl;
+                    cin >> rozmiar;
+                    przydzielPamiec1D(t,rozmiar);
+
                     wypelnijTablice1D(t,rozmiar,0,10);
                     wyswietl1D(t,rozmiar);
                     ileWyst(t,rozmiar);
+                    usunTablice1D(t);
                     break;
                 }
             case 3:
