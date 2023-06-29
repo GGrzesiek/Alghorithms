@@ -1,15 +1,16 @@
+
 struct element{
     int number;
     element* next;
-}
-int countEvenElements(stos* w)
+};
+int countEvenElements(element* stos)
 {
     int count = 0;
-    stos* tempStack = nullptr;  
+    element* tempStack = nullptr;  
 
-    while (!isEmpty(w)) {
-        int element = first(w);  
-        pop(w); 
+    while (!isEmpty(stos)) {
+        int element = first(stos);  
+        pop(stos); 
 
         if (element % 2 == 0)
         {
@@ -22,7 +23,7 @@ int countEvenElements(stos* w)
     {
         int element = first(tempStack);  
         pop(tempStack);  
-        push(w, element);
+        push(stos, element);
     }
 
     return count;

@@ -160,7 +160,7 @@ int main()
     while(flag)
     {
         cout << "1. Add next element" << endl;
-        cout <<"2. Add before element" << endl;
+        cout << "2. Add before element" << endl;
         cout << "3. Delete next element" << endl;
         cout << "4. Delete before element" << endl;
         cout << "5. Amount of elements" << endl;
