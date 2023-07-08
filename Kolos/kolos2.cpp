@@ -31,32 +31,33 @@ void wczytaj(student &s)
     }
 }
 
-int flagaP(float* x[],int n, int granica)
-{   int j = n-1;
+int flagaP(student* studenci,int n, float granica)
+{   
+    int j = n-1;
     int i = 0;
     for(i; i<j;)
     {
-        for(;x[i]<=granica && i<j;)
+        for(;studenci[i].average<=granica && i<j;)
         {
             i++;
         }
-        for(;x[j]>granica && i<j;)
+        for(;studenci[j].average>granica && i<j;)
         {
             j--;
         }
         if(i<j)
         {
-            swap(x[i],x[j]);
+            swap(studenci[i],studenci[j]);
             i++;
             j--;
         }
     }
-    if(x[i]<=granica)
-    {
+    if(studenci[i].average<=granica)
+    {   
         return i+1;
     }
     else
-    {
+    {   
         return i;
     }
 }
@@ -72,16 +73,17 @@ void srednia(student &s)
 }
 
 void wyswietl(student s[], int liczba, int przedzial)
-{   cout << "Studenci z ocenami powyzej 4.0: " << endl;
-
+{   
+    cout << "Studenci z ocenami ponizej 4.0: " << endl;
     for(int i = 0; i<przedzial; i++)
     {     
-        cout << "Srednia studenta " << s[i].index << " wynosi " << s[i].average << endl;
+        cout << "Srednia studenta o numerze indeksu " << s[i].index << " wynosi: " << s[i].average << endl;
     }
-    cout << "Studenci z ocenami ponizej 4.0: " << endl;
+
+    cout << "Studenci z ocenami powyzej 4.0: " << endl;
     for(int i = przedzial; i<liczba; i++)
     {     
-        cout << "Srednia studenta " << s[i].index << " wynosi " << s[i].average << endl;
+        cout << "Srednia studenta o numerze indeksu " << s[i].index << " wynosi: " << s[i].average << endl;
     }
 }
 
@@ -89,18 +91,20 @@ int main()
 {   
     int n;
     int przedzial;
+    
     cout << "Podaj liczbe studentow: ";
     cin >> n;
 
     student* studenci = new student[n];
+
     for(int i=0; i<n; i++)
     {
         wczytaj(studenci[i]);
         srednia(studenci[i]);
-
-        przedzial = flagaP(studenci->average, n, 4);
     }
-    cout << studenci->average << endl;
+
+    przedzial = flagaP(studenci, n, 4);
+
     wyswietl(studenci, n, przedzial);
 
     delete [] studenci;
