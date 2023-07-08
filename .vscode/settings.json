@@ -5,6 +5,7 @@
         "ctime": "cpp",
         "array": "cpp",
         "fstream": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "new": "cpp"
     }
 }
