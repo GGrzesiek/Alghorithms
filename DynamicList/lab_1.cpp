@@ -13,7 +13,7 @@ void wypelnijTablice1D(int *tab, int n,int a,int b)
 {   srand(time(NULL));
     for(int i=0;i<n;i++)
     {
-         tab[i]=rand()%(b-a);
+         tab[i]=rand()%(b-a+1)+a;
     }
 }
 
@@ -24,7 +24,7 @@ void wyswietl1D(int *tab,int n)
          cout << tab[i] << endl;
     }
 }
-
+ 
 void usunTablice1D(int *&tab)
 {
     delete []tab;
@@ -61,14 +61,16 @@ bool czyPierwsza(int liczba)
 
 void ileWyst(int *tab,int n)
 {
-    int lWyst[10]={0};
+    int lWyst[11]={0};
     for(int i=0;i<n;i++)
     {   
         lWyst[tab[i]]++;
     }
-    for(int i=0;i<10;i++)
-    {
-        cout << i << " wystepuje " << lWyst[i] << " razy" << endl;
+    for(int i=0;i<11;i++)
+    {   if(lWyst[i]!=0)
+        {
+            cout << i << " wystepuje " << lWyst[i] << " razy" << endl;
+        }
     }
 }
 
